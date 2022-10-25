@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "4c9c327f-7ba1-455e-b8e6-60e753db359e",
+		"name": "Damage Report Solution",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6958706"
+	},
+	"item": [
+		{
+			"name": "Shops",
+			"item": [
+				{
+					"name": "List Shops",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/shops?page=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shops"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Shops",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"New Shop\",\n    \"email\":\"newshop@mail.com\",\n    \"latitude\":\"1.242342\",\n    \"longitude\" : \"2.765757\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/shops",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shops"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Shop",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"New Shop\",\n    \"email\":\"newshop@mail.com\",\n    \"latitude\":\"1.242342\",\n    \"longitude\" : \"2.765757\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/shops/12/edit",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shops",
+								"12",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Shop",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"News Shop\",\n    \"email\":\"news@mail.com\",\n    \"latitude\":\"1.242342\",\n    \"longitude\" : \"3.765757\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/shops/12",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shops",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Shop",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/shops/12",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shops",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "List Reports",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\" : [0,1,2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/reports?page=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reports"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Reports",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Kamaj",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "kamaj@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Required to repair my vehicle",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "6.012845718315232",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "80.51238688696638",
+									"type": "text"
+								},
+								{
+									"key": "photo[]",
+									"type": "file",
+									"src": [
+										"/Users/surenshanaka/Desktop/auto-accident-attorneys-damaged-car-11562983054hssgmz4sqv.png",
+										"/Users/surenshanaka/Desktop/114-1148053_car-accident-png-file-crashed-car-png.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/reports",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Report",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"New Shop\",\n    \"email\":\"newshop@mail.com\",\n    \"latitude\":\"1.242342\",\n    \"longitude\" : \"2.765757\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/reports/31",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reports",
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Report",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jarret Shields Jr\",\n    \"email\":\"webkit@gmail.com\",\n    \"description\" : \"test\",\n    \"latitude\": \"4.234324\",\n    \"longitude\":\"-2.345332\",\n    \"reason\":\"Information not enough to generate the report\",\n    \"status\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/reports/17",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reports",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Report",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/reports/12",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"reports",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

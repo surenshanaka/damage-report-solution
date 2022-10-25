@@ -1,0 +1,427 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Damage Report Api Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "surenshanaka89@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/reports": {
+            "get": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Get list of reports",
+                "description": "Returns list of reports",
+                "operationId": "getReportsList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Per page count",
+                        "required": false,
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    },
+                    {
+                        "name": "status[]",
+                        "in": "query",
+                        "description": "Filter reports by status",
+                        "required": false,
+                        "explode": true,
+                        "schema": {
+                            "type": "object",
+                            "default": "[0,1,2]"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Store new report",
+                "description": "Returns report data",
+                "operationId": "storeReport",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "name",
+                                            "email",
+                                            "description",
+                                            "latitude",
+                                            "longitude",
+                                            "photo[]"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "John Doe"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "example": "johndoe@mail.com"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Lorem Ipsum is simply dummy text of the printing"
+                                            },
+                                            "latitude": {
+                                                "type": "string",
+                                                "example": "7.790864"
+                                            },
+                                            "longitude": {
+                                                "type": "string",
+                                                "example": "-52.627011"
+                                            },
+                                            "reason": {
+                                                "type": "string",
+                                                "example": "Lorem Ipsum is simply dummy text of the printing"
+                                            },
+                                            "photo[]": {
+                                                "description": "Report photos",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "format": "binary"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/reports/{id}": {
+            "get": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Get report information",
+                "description": "Returns report data",
+                "operationId": "getReportById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Update existing report",
+                "description": "Returns updated report data",
+                "operationId": "updateReport",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Report id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "description",
+                                    "latitude",
+                                    "longitude",
+                                    "reason",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "johndoe@mail.com"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Lorem Ipsum is simply dummy text of the printing"
+                                    },
+                                    "latitude": {
+                                        "type": "string",
+                                        "example": "7.790864"
+                                    },
+                                    "longitude": {
+                                        "type": "string",
+                                        "example": "-52.627011"
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "example": "Lorem Ipsum is simply dummy text of the printing"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/shops": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Get list of shops",
+                "description": "Returns list of shops",
+                "operationId": "getShopsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Store new shop",
+                "description": "Returns shop data",
+                "operationId": "storeShop",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "latitude",
+                                    "longitude"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "johndoe@mail.com"
+                                    },
+                                    "latitude": {
+                                        "type": "string",
+                                        "example": "7.790864"
+                                    },
+                                    "longitude": {
+                                        "type": "string",
+                                        "example": "-52.627011"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/shops/{id}": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Get shop information",
+                "description": "Returns shop data",
+                "operationId": "getShopsById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shop id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Update existing shop",
+                "description": "Returns updated shop data",
+                "operationId": "updateShop",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shop id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "latitude",
+                                    "longitude"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Shop"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "johndoe@mail.com"
+                                    },
+                                    "latitude": {
+                                        "type": "string",
+                                        "example": "7.790864"
+                                    },
+                                    "longitude": {
+                                        "type": "string",
+                                        "example": "-52.627011"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Delete existing shop",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteShop",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shop id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        }
+    }
+}

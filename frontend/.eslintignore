@@ -1,0 +1,6 @@
+node_modules
+build
+*.html
+converage
+postcss.config.cjs
+tailwind.config.cjs
